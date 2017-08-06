@@ -1,14 +1,14 @@
 // @flow
 
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = (props: { showSearch?: boolean, handleSearchTermChange?: Function, searchTerm?: string }) => {
-  let utilSpace
+  let utilSpace;
   if (props.showSearch) {
     utilSpace = (
       <input onChange={props.handleSearchTermChange} value={props.searchTerm} type="text" placeholder="Search" />
-    )
+    );
   } else {
     utilSpace = (
       <h2>
@@ -16,7 +16,7 @@ const Header = (props: { showSearch?: boolean, handleSearchTermChange?: Function
           Back
         </Link>
       </h2>
-    )
+    );
   }
 
   return (
@@ -28,13 +28,13 @@ const Header = (props: { showSearch?: boolean, handleSearchTermChange?: Function
       </h1>
       {utilSpace}
     </header>
-  )
-}
+  );
+};
 
 Header.defaultProps = {
   showSearch: false,
   handleSearchTermChange: function noop() {},
   searchTerm: '',
-}
+};
 
-export default Header
+export default Header;

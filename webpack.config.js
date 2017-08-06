@@ -1,26 +1,35 @@
 const path = require('path'); // import Node.js path module for path related operations
+const webpack = require('webpack');
+
 // create our config object
 const config = {
   context: __dirname,
-  entry: path.join(__dirname, '/app/index.jsx'), // Abosolute path to our entry file
+  entry: [
+    'react-hot-loader/patch',
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
+    './app/index.jsx',
+  ],
   devtool: 'cheap-eval-source-map',
   output: {
     // our output configuration
     path: path.join(__dirname, './public/'), // output path (directory/folder)
-    filename: 'bundle.js' // output bundled file name
+    filename: 'bundle.js', // output bundled file name
   },
   devServer: {
+    hot: true,
     contentBase: './public',
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json']
+    extensions: ['.js', '.jsx', '.json'],
   },
   stats: {
     colors: true,
     reasons: true,
-    chunks: false
+    chunks: false,
   },
+  plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin()],
   module: {
     // define our loaders here
     rules: [
@@ -29,11 +38,11 @@ const config = {
         enforce: 'pre',
         test: /\.jsx?$/,
         loader: 'eslint-loader',
-        exclude: '/node-modules/'
+        exclude: '/node-modules/',
       },
       {
         test: /\.jsx?$/, // check for .js and .jsx files (uses Regex)
-        loader: 'babel-loader' // use these loaders for .js and .jsx files found
+        loader: 'babel-loader', // use these loaders for .js and .jsx files found
       },
       {
         // check for files ending with  .css (uses Regex)
@@ -41,10 +50,10 @@ const config = {
         // use these loaders of .css files. 'css-loader gets run first and is
         // used to handle the imports of our css files inside our jsx files.
         // The style loader then mounts our css in to the DOM
-        loaders: ['style-loader', 'css-loader']
-      }
-    ]
-  }
+        loaders: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
 };
 
 // export our config object.
