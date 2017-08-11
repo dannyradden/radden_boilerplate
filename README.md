@@ -1,16 +1,13 @@
-*Things to add*
+React front-end good dev practice boilerplate with:
+  Webpack
+  Babel
+  Flow
+  Eslint - airbnb config
+  Prettier
+  Axios
+  Hot reloading
+  babel-plugin-transform-class-properties
+  styled components
 
-hot - optional
-
-*Added so far*
-
-*remove later*
-
-unneeded scripts from package.json
-fix gitignore
-
-
-
-
-React front-end good dev practice boilerplate with
-flow, eslint - airbnb, prettier, webpack, babel Testing: jest, enzyme,axios
+Testing:
+  Jest /w enzyme
